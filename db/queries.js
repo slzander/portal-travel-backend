@@ -19,7 +19,12 @@ module.exports = {
                     'password_digest'
                 ])
                 .then(users => users[0])
-        }
+        },
+        delete(id){
+            return database('users')
+                .where('id', id)
+                .delete()
+        },
     },
     images: {
         getAll: () => {
@@ -37,6 +42,11 @@ module.exports = {
                     'url'
                 ])
                 .then(images => images[0])
+        },
+        delete(id){
+            return database('images')
+                .where('id', id)
+                .delete()
         }
     }
 }

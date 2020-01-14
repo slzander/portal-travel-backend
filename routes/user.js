@@ -18,4 +18,9 @@ router.post('/user', (request, response) => {
         .then(response.status(201))
 })
 
+router.delete('/user/:id', (request, response) => {
+    queries.delete(request.params.id)
+        .then(response => response.send(204))
+})
+
 module.exports = router
