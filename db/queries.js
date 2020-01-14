@@ -4,6 +4,18 @@ module.exports = {
     users: {
         getAll: () => {
             return database('users')
+            .then(users => {
+                const promises = users.map(user => {
+                    return database('user-images')
+                        .join('images', 'images.id', 'user-images.image_id')
+                        .where('user_id', user.id)
+                        .then(images => {
+                            user.images = images
+                            return user
+                        })
+                })
+                return Promise.all(promises)
+            })
         },
         create: (user) => {
             return database('users')
