@@ -48,5 +48,28 @@ module.exports = {
                 .where('id', id)
                 .delete()
         }
+    },
+    userImages: {
+        getAll: () => {
+            return database('user-images')
+        },
+        create: (userImage) => {
+            return database('user-images')
+                .insert({
+                    user_id: userImage.title,
+                    image_id: userImage.url
+                })
+                .returning([
+                    'id',
+                    'title',
+                    'url'
+                ])
+                .then(userImages => userImages[0])
+        },
+        delete(id){
+            return database('user-images')
+                .where('id', id)
+                .delete()
+        }
     }
 }
