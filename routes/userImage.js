@@ -4,7 +4,7 @@ const queries = require('../db/queries')
 
 router.get('/user-images', (request, response) => {
     queries
-        .userimages
+        .userImages
         .getAll()
         .then(results => response.send(results))
         .then(response.status(201))
@@ -12,7 +12,7 @@ router.get('/user-images', (request, response) => {
 
 router.post('/user-images', (request, response) => {
     queries
-        .userimages
+        .userImages
         .create(request.body)
         .then(results => response.send(results))
         .then(response.status(201))
