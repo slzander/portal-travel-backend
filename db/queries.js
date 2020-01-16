@@ -1,4 +1,5 @@
 const database = require('./database')
+const bcrypt = require('bcrypt')
 
 module.exports = {
     users: {
@@ -18,25 +19,34 @@ module.exports = {
             })
         },
         create: (user) => {
-            return database('users')
-                .insert({
-                    first_name: user.first_name,
-                    username: user.username,
-                    password_digest: user.password_digest
+            return bcrypt.hash(user.password, 12)
+                .then(hash => {
+                    return database('users')
+                        .insert({
+                            first_name: user.first_name,
+                            username: user.username,
+                            password_digest: hash
+                        })
+                        .returning([
+                            'id',
+                            'first_name',
+                            'username'
+                        ])
+                        .then(users => users[0])
                 })
-                .returning([
-                    'id',
-                    'first_name',
-                    'username',
-                    'password_digest'
-                ])
-                .then(users => users[0])
         },
         delete(id){
             return database('users')
                 .where('id', id)
                 .delete()
         },
+    },
+    login: {
+        authorizeUser: (user) => {
+            return database('users')
+                .where({ username: user.username })
+                .first()
+        }
     },
     images: {
         getAll: () => {
