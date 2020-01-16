@@ -17,6 +17,16 @@ module.exports = {
                 return Promise.all(promises)
             })
         },
+        show: (id) => {
+            return database('users')
+                .where('id', id)
+                .returning([
+                    'id',
+                    'first_name',
+                    'username'
+                ])
+                .then(users => users[0])
+        },
         create: (user) => {
             return database('users')
                 .insert({
@@ -27,8 +37,7 @@ module.exports = {
                 .returning([
                     'id',
                     'first_name',
-                    'username',
-                    'password_digest'
+                    'username'
                 ])
                 .then(users => users[0])
         },

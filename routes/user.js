@@ -10,6 +10,13 @@ router.get('/user', (request, response) => {
         .then(response.status(201))
 })
 
+router.get('/user/:id', (request, response) => {
+    queries
+        .users
+        .show(request.params.id)
+        .then(response => response.send(204))
+})
+
 router.post('/user', (request, response) => {
     queries
         .users
@@ -19,7 +26,9 @@ router.post('/user', (request, response) => {
 })
 
 router.delete('/user/:id', (request, response) => {
-    queries.delete(request.params.id)
+    queries
+        .users
+        .delete(request.params.id)
         .then(response => response.send(204))
 })
 
