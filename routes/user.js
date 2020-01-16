@@ -14,7 +14,8 @@ router.get('/user/:id', (request, response) => {
     queries
         .users
         .show(request.params.id)
-        .then(response => response.send(204))
+        .then(results => response.send(results))
+        .then(response.status(201))
 })
 
 router.post('/user', (request, response) => {
