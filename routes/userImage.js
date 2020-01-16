@@ -20,7 +20,7 @@ router.post('/user-images', (request, response) => {
 
 router.delete('/user-images/:id', (request, response) => {
     queries.delete(request.params.id)
-        .then(response => response.send(204))
+        .then(result => response.send(204))
 })
 
 module.exports = router

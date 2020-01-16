@@ -30,7 +30,7 @@ router.delete('/user/:id', (request, response) => {
     queries
         .users
         .delete(request.params.id)
-        .then(response => response.send(204))
+        .then(result => response.send(204))
 })
 
 module.exports = router
