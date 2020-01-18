@@ -18,9 +18,12 @@ router.post('/user-images', (request, response) => {
         .then(response.status(201))
 })
 
-router.delete('/user-images/:id', (request, response) => {
-    queries.delete(request.params.id)
-        .then(result => response.send(204))
+router.put('/user-images/:id', (request, response) => {
+    queries
+        .userImages
+        .update(request.params.id, request.body)
+        .then(result => response.send(result))
+        .then(response.status(201))
 })
 
 module.exports = router

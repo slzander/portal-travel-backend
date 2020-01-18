@@ -87,6 +87,17 @@ module.exports = {
                 ])
                 .then(userImages => userImages[0])
         },
+        update: (id, userImage) => {
+            return database('user-images')
+                .where('id', id)
+                .update(userImage)
+                .returning([
+                    'id',
+                    'user_id',
+                    'image_id'
+                ])
+                .then(userImages => userImages[0])
+        },
         delete(id){
             return database('user-images')
                 .where('id', id)
