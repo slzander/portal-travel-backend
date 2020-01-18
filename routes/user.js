@@ -14,7 +14,7 @@ router.get('/user/:id', (request, response) => {
     queries
         .users
         .show(request.params.id)
-        .then(results => response.send(results))
+        .then(result => response.send(result))
         .then(response.status(201))
 })
 
