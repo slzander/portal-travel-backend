@@ -77,13 +77,13 @@ module.exports = {
         create: (userImage) => {
             return database('user-images')
                 .insert({
-                    user_id: userImage.title,
-                    image_id: userImage.url
+                    user_id: userImage.user_id,
+                    image_id: userImage.image_id
                 })
                 .returning([
                     'id',
-                    'title',
-                    'url'
+                    'user_id',
+                    'image_id'
                 ])
                 .then(userImages => userImages[0])
         },
