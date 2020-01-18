@@ -23,8 +23,7 @@ module.exports = {
                 .returning([
                     'id',
                     'first_name',
-                    'username',
-                    'images'
+                    'username'
                 ])
                 .then(users => users[0])
         },
@@ -38,8 +37,7 @@ module.exports = {
                 .returning([
                     'id',
                     'first_name',
-                    'username',
-                    'images'
+                    'username'
                 ])
                 .then(users => users[0])
         },
