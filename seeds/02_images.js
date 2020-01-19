@@ -5,6 +5,12 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('images').insert([
+        {title: 'Macchu Picchu',
+          url: '../images/IMG_0557'},
+        {title: 'Telluride Lake',
+          url: '../images/IMG_0558'},
+        {title: 'Scuba Diving in Mexico',
+          url: '../images/IMG_0559'},
         {title: 'ShangriLa',
           url: 'https://video.360cities.net/littleplanet-360-imagery/01587664_ShangriLa-360-8K-h265-60Mbps-1024x512.jpg'},
         {title: 'Statue of Liberty',

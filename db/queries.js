@@ -41,7 +41,7 @@ module.exports = {
                 ])
                 .then(users => users[0])
         },
-        delete(id){
+        delete: (id) => {
             return database('users')
                 .where('id', id)
                 .delete()
@@ -63,11 +63,6 @@ module.exports = {
                     'url'
                 ])
                 .then(images => images[0])
-        },
-        delete(id){
-            return database('images')
-                .where('id', id)
-                .delete()
         }
     },
     userImages: {
@@ -98,7 +93,7 @@ module.exports = {
                 ])
                 .then(userImages => userImages[0])
         },
-        delete(id){
+        delete: (id) => {
             return database('user-images')
                 .where('id', id)
                 .delete()
