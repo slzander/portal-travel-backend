@@ -30,7 +30,7 @@ router.delete('/user-images/:id', (request, response) => {
     queries
         .userImages
         .delete(request.params.id)
-        .then(result => response.send(204))
+        .then(response.status(204))
 })
 
 module.exports = router
