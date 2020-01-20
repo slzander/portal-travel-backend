@@ -31,7 +31,7 @@ exports.seed = function (knex) {
         },
         {
           title: 'El Nido, Phillipines',
-          url: 'https://imgur.com/Nk4VmCH'
+          url: 'https://i.imgur.com/Nk4VmCH.jpg'
         },
         {
           title: 'Victoria Falls, Zimbabwe',
@@ -39,7 +39,7 @@ exports.seed = function (knex) {
         },
         {
           title: 'Ayutthaya, Thailand',
-          url: 'https://imgur.com/FBR29ZM'
+          url: 'https://i.imgur.com/FBR29ZM.jpg'
         },
         {
           title: 'Luner Lake, Austria',
