@@ -4,18 +4,18 @@ module.exports = {
     users: {
         getAll: () => {
             return database('users')
-            .then(users => {
-                const promises = users.map(user => {
-                    return database('user-images')
-                        .join('images', 'images.id', 'user-images.image_id')
-                        .where('user_id', user.id)
-                        .then(images => {
-                            user.images = images
-                            return user
-                        })
+                .then(users => {
+                    const promises = users.map(user => {
+                        return database('user-images')
+                            .join('images', 'images.id', 'user-images.image_id')
+                            .where('user_id', user.id)
+                            .then(images => {
+                                user.images = images
+                                return user
+                            })
+                    })
+                    return Promise.all(promises)
                 })
-                return Promise.all(promises)
-            })
         },
         show: (id) => {
             return database('users')
@@ -42,9 +42,13 @@ module.exports = {
                 .then(users => users[0])
         },
         delete: (id) => {
-            return database('users')
-                .where('id', id)
+            return database('user-images')
+                .where('user_id', id)
                 .delete()
+                .then(() => database('users')
+                    .where('id', id)
+                    .delete()
+                )
         },
     },
     images: {
