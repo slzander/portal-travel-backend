@@ -90,7 +90,7 @@ module.exports = {
                     'user_id',
                     'image_id'
                 ])
-                .then(userImages => userImages[0])
+                // .then(userImages => userImages)
         },
         update: (id, userImage) => {
             return database('user-images')
