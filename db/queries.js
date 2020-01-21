@@ -73,12 +73,18 @@ module.exports = {
         getAll: () => {
             return database('user-images')
         },
-        create: (userImage) => {
+        create: (user_id, images) => {
             return database('user-images')
-                .insert({
-                    user_id: userImage.user_id,
-                    image_id: userImage.image_id
-                })
+                .insert([{
+                    user_id,
+                    image_id: images[0]
+                },{
+                    user_id,
+                    image_id: images[1]
+                },{
+                    user_id,
+                    image_id: images[2]
+                }])
                 .returning([
                     'id',
                     'user_id',

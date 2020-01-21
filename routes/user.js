@@ -19,9 +19,11 @@ router.get('/user/:id', (request, response) => {
 })
 
 router.post('/user', (request, response) => {
-    queries
-        .users
-        .create(request.body)
+    queries.users.create(request.body)
+        .then(user => {
+            return queries.userImages.create(user.id, request.body.images)
+            .then(userImages => Object.assign(user, {images: userImages}))
+        })
         .then(results => response.send(results))
         .then(response.status(201))
 })
