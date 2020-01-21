@@ -3,6 +3,7 @@ exports.up = function(knex) {
         image.increments('id')
         image.string('title')
         image.text('url')
+        image.text('low_resolution_url')
     })
 };
 
