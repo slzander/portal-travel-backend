@@ -18,6 +18,10 @@ Created by Stacey Zander.
 
 https://youtu.be/5k-zg8USoEk
 
+**API:**
+
+https://ar-travel-app.herokuapp.com/user
+
 **Stack:**
 
   * React-Native
@@ -31,7 +35,3 @@ https://youtu.be/5k-zg8USoEk
 **Install Instructions:**
 
 1. Follow the instructions on this repo: https://github.com/slzander/portal-travel-frontend 
-
-**API:**
-
-https://ar-travel-app.herokuapp.com/user
