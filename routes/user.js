@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const queries = require('../db/queries')
 
-
 router.post('/user', (request, response) => {
     queries.users.create(request.body)
     .then(user => {
