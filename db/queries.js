@@ -2,6 +2,20 @@ const database = require('./database')
 
 module.exports = {
     users: {
+        create: (user) => {
+            return database('users')
+                .insert({
+                    first_name: user.first_name,
+                    username: user.username,
+                    password_digest: user.password_digest
+                })
+                .returning([
+                    'id',
+                    'first_name',
+                    'username'
+                ])
+                .then(users => users[0])
+        },
         getAll: () => {
             return database('users')
                 .then(users => {
@@ -20,20 +34,6 @@ module.exports = {
         show: (id) => {
             return database('users')
                 .where('id', id)
-                .returning([
-                    'id',
-                    'first_name',
-                    'username'
-                ])
-                .then(users => users[0])
-        },
-        create: (user) => {
-            return database('users')
-                .insert({
-                    first_name: user.first_name,
-                    username: user.username,
-                    password_digest: user.password_digest
-                })
                 .returning([
                     'id',
                     'first_name',
@@ -70,18 +70,15 @@ module.exports = {
         }
     },
     userImages: {
-        getAll: () => {
-            return database('user-images')
-        },
         create: (user_id, images) => {
             return database('user-images')
                 .insert([{
                     user_id,
                     image_id: images[0]
-                },{
+                }, {
                     user_id,
                     image_id: images[1]
-                },{
+                }, {
                     user_id,
                     image_id: images[2]
                 }])
@@ -90,6 +87,9 @@ module.exports = {
                     'user_id',
                     'image_id'
                 ])
+        },
+        getAll: () => {
+            return database('user-images')
         },
         update: (id, userImage) => {
             return database('user-images')
