@@ -2,6 +2,17 @@ const express = require('express')
 const router = express.Router()
 const queries = require('../db/queries')
 
+
+router.post('/user', (request, response) => {
+    queries.users.create(request.body)
+    .then(user => {
+        return queries.userImages.create(user.id, request.body.images)
+        .then(userImages => Object.assign(user, {images: userImages}))
+    })
+    .then(results => response.send(results))
+    .then(response.status(201))
+})
+
 router.get('/user', (request, response) => {
     queries
         .users
@@ -17,17 +28,6 @@ router.get('/user/:id', (request, response) => {
         .then(result => response.send(result))
         .then(response.status(201))
 })
-
-router.post('/user', (request, response) => {
-    queries.users.create(request.body)
-        .then(user => {
-            return queries.userImages.create(user.id, request.body.images)
-            .then(userImages => Object.assign(user, {images: userImages}))
-        })
-        .then(results => response.send(results))
-        .then(response.status(201))
-})
-
 router.delete('/user/:id', (request, response) => {
     queries
         .users
